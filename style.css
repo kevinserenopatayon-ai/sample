@@ -275,13 +275,47 @@ body {
   color: var(--muted);
 }
 
+/* ---------- RSVP Confirmation ---------- */
+
+.rsvp-button {
+  display: inline-block;
+  margin-bottom: 45px;
+  padding: 12px 24px;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-decoration: none;
+
+  color: var(--gold);
+  border: 1px solid var(--gold-soft);
+  background: transparent;
+
+  transition:
+    background-color .3s ease,
+    color .3s ease,
+    transform .3s ease;
+}
+
+.rsvp-button:hover {
+  background-color: var(--gold);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
 .final-content h2 {
   margin: 0;
   color: var(--gold);
   font-family: "Great Vibes", "Brush Script MT", cursive;
   font-weight: 400;
-  font-size: clamp(62px, 9vw, 135px);
-  line-height: .95;
+
+  /* Medium font size */
+  font-size: clamp(42px, 6vw, 78px);
+
+  /* More space between the two lines */
+  line-height: 1.55;
+  letter-spacing: 1px;
 }
 
 .final-note {
@@ -452,6 +486,7 @@ body {
     opacity: 0;
     transform: scale(.965) translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -459,13 +494,21 @@ body {
 }
 
 @keyframes floatArrow {
-  0%, 100% { transform: translateY(0); opacity: .65; }
-  50% { transform: translateY(7px); opacity: 1; }
+  0%, 100% {
+    transform: translateY(0);
+    opacity: .65;
+  }
+
+  50% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
 }
 
 /* ---------- Mobile ---------- */
 
 @media (max-width: 700px) {
+
   .gold-frame {
     inset: 1.5% 2.8%;
   }
@@ -539,8 +582,17 @@ body {
     width: 82vw;
   }
 
+  /* Medium final-page text on mobile */
   .final-content h2 {
-    font-size: clamp(54px, 14vw, 86px);
+    font-size: clamp(42px, 12vw, 68px);
+    line-height: 1.55;
+  }
+
+  .rsvp-button {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    padding: 11px 18px;
+    margin-bottom: 38px;
   }
 
   .final-note {
@@ -549,13 +601,16 @@ body {
 }
 
 /* Prevent accidental page skipping with keyboard focus */
+
 button:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 4px;
 }
 
 /* Reduced motion accessibility */
+
 @media (prefers-reduced-motion: reduce) {
+
   html,
   #wedding {
     scroll-behavior: auto;
