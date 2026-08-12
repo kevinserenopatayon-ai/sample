@@ -1,0 +1,579 @@
+/* =========================================================
+   KEVIN & JOANA — WEDDING FELLOWSHIP
+   GitHub Pages wedding invitation
+   ========================================================= */
+
+:root {
+  --cream: #f8f2e8;
+  --cream-deep: #efe5d5;
+  --paper: #fbf8f1;
+  --gold: #a66d16;
+  --gold-soft: #c79a55;
+  --ink: #172127;
+  --muted: #766b5b;
+  --white: #fffdf8;
+  --transition: 900ms cubic-bezier(.22, 1, .36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--cream);
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  overflow: hidden;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+/* One viewport = one page */
+#wedding {
+  width: 100%;
+  height: 100svh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255,255,255,.45), transparent 45%),
+    var(--cream);
+}
+
+/* Subtle paper texture without requiring another asset */
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .22;
+  background-image:
+    radial-gradient(rgba(145,105,45,.14) .55px, transparent .55px),
+    radial-gradient(rgba(145,105,45,.08) .45px, transparent .45px);
+  background-size: 11px 11px, 17px 17px;
+  background-position: 0 0, 5px 7px;
+  mix-blend-mode: multiply;
+}
+
+/* Elegant double-line frame */
+.gold-frame {
+  position: absolute;
+  inset: 2.2% 2.4%;
+  border: 1px solid rgba(166,109,22,.78);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gold-frame::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(166,109,22,.36);
+}
+
+/* Corner ornaments */
+.gold-frame::before {
+  content: "⌜";
+  position: absolute;
+  top: -13px;
+  right: -13px;
+  width: 60px;
+  height: 60px;
+  font-size: 52px;
+  line-height: 60px;
+  color: var(--gold);
+  background: var(--cream);
+  transform: rotate(90deg);
+  text-align: center;
+}
+
+.ornament {
+  color: var(--gold);
+  font-size: 38px;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255,255,255,.8);
+}
+
+.welcome-content,
+.final-content {
+  position: relative;
+  z-index: 4;
+  width: min(900px, 86vw);
+  text-align: center;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ---------- Welcome ---------- */
+
+.welcome-page {
+  display: block;
+}
+
+.welcome-content .eyebrow {
+  margin: 24px 0 14px;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(9px, 1.1vw, 14px);
+  letter-spacing: .38em;
+  color: var(--ink);
+}
+
+.welcome-content h1 {
+  margin: 0;
+  color: var(--gold);
+  font-family: "Great Vibes", "Brush Script MT", cursive;
+  font-weight: 400;
+  font-size: clamp(74px, 11vw, 170px);
+  line-height: .9;
+}
+
+.welcome-content h1 span {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: .55em;
+  vertical-align: .12em;
+}
+
+.welcome-content h2 {
+  margin: 14px 0;
+  font-size: clamp(27px, 3.7vw, 58px);
+  letter-spacing: .18em;
+  font-weight: 500;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 15px auto;
+  width: min(520px, 70vw);
+  color: var(--gold);
+}
+
+.divider i {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, transparent, rgba(166,109,22,.7));
+}
+
+.divider i:last-child {
+  background: linear-gradient(to left, transparent, rgba(166,109,22,.7));
+}
+
+.divider b {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.divider.small {
+  width: min(250px, 42vw);
+  margin: 18px auto 20px;
+}
+
+.divider.small b {
+  font-size: 15px;
+}
+
+.date {
+  margin: 0;
+  font-size: clamp(17px, 2vw, 28px);
+  letter-spacing: .08em;
+  font-weight: 600;
+}
+
+.date span {
+  color: var(--gold);
+  padding: 0 .25em;
+}
+
+.welcome-line,
+.final-line {
+  width: 90px;
+  height: 1px;
+  background: var(--gold-soft);
+  margin: 30px auto 15px;
+}
+
+.scroll-hint {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 9px;
+  letter-spacing: .32em;
+  color: var(--muted);
+}
+
+.down-arrow {
+  display: block;
+  color: var(--gold);
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  margin-top: 3px;
+  animation: floatArrow 1.8s ease-in-out infinite;
+}
+
+/* ---------- Artwork pages ---------- */
+
+.artwork-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5vh 1.5vw;
+}
+
+.artwork-shell {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.artwork-shell img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 96vw;
+  max-height: 97svh;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  box-shadow: 0 12px 45px rgba(87, 61, 27, .12);
+  border-radius: 1px;
+}
+
+/* ---------- Final page ---------- */
+
+.final-page {
+  display: block;
+}
+
+.final-content .final-small {
+  margin: 22px 0 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  letter-spacing: .32em;
+  color: var(--muted);
+}
+
+.final-content h2 {
+  margin: 0;
+  color: var(--gold);
+  font-family: "Great Vibes", "Brush Script MT", cursive;
+  font-weight: 400;
+  font-size: clamp(62px, 9vw, 135px);
+  line-height: .95;
+}
+
+.final-note {
+  font-size: clamp(16px, 1.9vw, 25px);
+  line-height: 1.45;
+  margin: 22px 0 12px;
+  color: var(--ink);
+}
+
+.signature {
+  margin: 0;
+  color: var(--gold);
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(34px, 4.5vw, 60px);
+}
+
+.final-left,
+.final-right {
+  position: absolute;
+  z-index: 1;
+  color: rgba(166,109,22,.20);
+  font-size: 210px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.final-left {
+  left: -40px;
+  bottom: -45px;
+  transform: rotate(-20deg);
+}
+
+.final-right {
+  right: -40px;
+  top: -45px;
+  transform: rotate(20deg);
+}
+
+/* ---------- Faux floral accents on text-only pages ---------- */
+
+.floral {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  color: rgba(89, 94, 69, .65);
+}
+
+.floral span {
+  display: inline-block;
+  margin: -5px;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.05));
+}
+
+.floral-top-left {
+  top: -42px;
+  left: -32px;
+  width: 240px;
+  transform: rotate(-18deg);
+  font-size: 85px;
+}
+
+.floral-top-left span:nth-child(2) {
+  font-size: 55px;
+  color: rgba(166,109,22,.42);
+}
+
+.floral-bottom-right {
+  right: -38px;
+  bottom: -48px;
+  width: 220px;
+  transform: rotate(20deg);
+  font-size: 95px;
+}
+
+.floral-bottom-right span:nth-child(2) {
+  color: rgba(166,109,22,.35);
+}
+
+/* ---------- Navigation ---------- */
+
+.page-dots {
+  position: fixed;
+  z-index: 20;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: transform .35s ease, background .35s ease, box-shadow .35s ease;
+}
+
+.dot:hover,
+.dot.active {
+  background: var(--gold);
+  transform: scale(1.45);
+  box-shadow: 0 0 0 4px rgba(166,109,22,.10);
+}
+
+.page-counter {
+  position: fixed;
+  z-index: 20;
+  left: 18px;
+  bottom: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 9px;
+  letter-spacing: .18em;
+  color: rgba(23,33,39,.60);
+}
+
+.page-counter em {
+  font-style: normal;
+  margin: 0 5px;
+  color: var(--gold);
+}
+
+.corner-note {
+  position: fixed;
+  z-index: 20;
+  right: 20px;
+  bottom: 15px;
+  font-family: "Great Vibes", cursive;
+  color: rgba(166,109,22,.65);
+  font-size: 22px;
+}
+
+/* ---------- Scroll reveal animation ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px) scale(.985);
+  transition:
+    opacity 900ms cubic-bezier(.22,1,.36,1),
+    transform 1100ms cubic-bezier(.22,1,.36,1);
+}
+
+.page.is-visible .reveal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.welcome-page .reveal,
+.final-page .reveal {
+  transform: translateY(calc(-50% + 35px)) scale(.985);
+}
+
+.welcome-page.is-visible .reveal,
+.final-page.is-visible .reveal {
+  transform: translateY(-50%) scale(1);
+}
+
+.artwork-page.is-visible .artwork-shell {
+  animation: pageIn 1000ms cubic-bezier(.22,1,.36,1) both;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: scale(.965) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes floatArrow {
+  0%, 100% { transform: translateY(0); opacity: .65; }
+  50% { transform: translateY(7px); opacity: 1; }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 700px) {
+  .gold-frame {
+    inset: 1.5% 2.8%;
+  }
+
+  .gold-frame::after {
+    inset: 6px;
+  }
+
+  .welcome-content {
+    width: 82vw;
+  }
+
+  .welcome-content .eyebrow {
+    letter-spacing: .24em;
+  }
+
+  .welcome-content h1 {
+    font-size: clamp(62px, 17vw, 105px);
+  }
+
+  .welcome-content h2 {
+    font-size: clamp(22px, 7vw, 35px);
+    letter-spacing: .10em;
+  }
+
+  .date {
+    font-size: 15px;
+    letter-spacing: .05em;
+  }
+
+  .artwork-page {
+    padding: 1vh 2vw;
+  }
+
+  .artwork-shell img {
+    max-width: 94vw;
+    max-height: 96svh;
+  }
+
+  .page-dots {
+    right: 9px;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .page-counter {
+    left: 10px;
+    bottom: 10px;
+  }
+
+  .corner-note {
+    right: 11px;
+    bottom: 8px;
+  }
+
+  .floral-top-left {
+    width: 130px;
+    font-size: 52px;
+  }
+
+  .floral-bottom-right {
+    width: 130px;
+    font-size: 58px;
+  }
+
+  .final-content {
+    width: 82vw;
+  }
+
+  .final-content h2 {
+    font-size: clamp(54px, 14vw, 86px);
+  }
+
+  .final-note {
+    font-size: 16px;
+  }
+}
+
+/* Prevent accidental page skipping with keyboard focus */
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  #wedding {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .page.is-visible .reveal,
+  .artwork-page.is-visible .artwork-shell {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .welcome-page .reveal,
+  .final-page .reveal,
+  .welcome-page.is-visible .reveal,
+  .final-page.is-visible .reveal {
+    transform: translateY(-50%);
+  }
+}
